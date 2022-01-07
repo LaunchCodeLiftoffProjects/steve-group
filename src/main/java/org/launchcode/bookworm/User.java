@@ -1,21 +1,18 @@
 package org.launchcode.bookworm;
 
-import org.apache.tomcat.jni.Address;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import java.util.*;
-import javax.validation.constraints.*;
-
-
-
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import java.util.ArrayList;
+import java.util.Date;
 
 
 @Entity
 @Validated
 public class User {
+    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
     @Id
     @GeneratedValue
     private int id;
@@ -28,12 +25,18 @@ public class User {
     private Date dob;
     private String userName;
     private String email;
-    private String password;
+    private String pwHash;
     private ArrayList <Book> library;
-    private String address;
+
+    @OneToOne
+    @JoinColumn (name = "addressId")
+    private Address address;
 
 public User (){}
-
+    public User(String userName, String password){
+        this.userName = userName;
+        this.pwHash = encoder.encode(password);
+    }
     public void setId(int id) {
         this.id = id;
     }
@@ -78,12 +81,12 @@ public User (){}
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPwHash() {
+        return pwHash;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPwHash(String pwHash) {
+        this.pwHash = pwHash;
     }
 
     public ArrayList<Book> getLibrary() {
@@ -94,11 +97,15 @@ public User (){}
         this.library = library;
     }
 
-    public String getAddress() {
+    public Address getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(Address address) {
         this.address = address;
+    }
+
+    public boolean isMatchingPassword(String password){
+        return encoder.matches(password,pwHash);
     }
 }
