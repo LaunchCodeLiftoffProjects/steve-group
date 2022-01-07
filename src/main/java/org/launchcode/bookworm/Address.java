@@ -3,6 +3,7 @@ package org.launchcode.bookworm;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 @Entity
 public class Address {
@@ -10,6 +11,7 @@ public class Address {
     @Id
     @GeneratedValue
     private Integer addressId;
+    @NotNull
     private String street;
     private String city;
     private String state;
