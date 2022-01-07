@@ -1,21 +1,23 @@
 package org.launchcode.bookworm;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.awt.*;
 
 @Entity
 public class Book {
     @Id
     @GeneratedValue
-    private static int id;
+    private int id;
     private String title;
     private String author;
-    private Image image;
+    private String image;
+
+
+    @ManyToOne
+    @JoinColumn(name = "owner_id")
     private User owner;
 
-    public static int getId() {
+    public int getId() {
         return id;
     }
 
@@ -35,11 +37,11 @@ public class Book {
         this.author = author;
     }
 
-    public Image getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Image image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

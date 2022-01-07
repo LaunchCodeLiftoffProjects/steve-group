@@ -30,7 +30,7 @@ public class User {
     private String email;
     private String password;
     private ArrayList <Book> library;
-    private Address address;
+    private String address;
 
 public User (){}
 
@@ -94,11 +94,11 @@ public User (){}
         this.library = library;
     }
 
-    public Address getAddress() {
+    public String getAddress() {
         return address;
     }
 
-    public void setAddress(Address address) {
+    public void setAddress(String address) {
         this.address = address;
     }
 }
