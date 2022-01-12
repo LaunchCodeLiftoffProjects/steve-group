@@ -43,7 +43,7 @@ public class UserController {
         return "redirect:";
     }
 
-    @GetMapping("view/{employerId}")
+    @GetMapping("view/{userId}")
     public String displayViewUser(Model model, @PathVariable int userId) {
 
         Optional optUser = userRepository.findById(userId);
