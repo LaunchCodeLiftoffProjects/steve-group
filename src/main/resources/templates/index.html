@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
     <title>Welcome to BookWorm!</title>
 </head>
 <body>
     <h1>Welcome to BookWorm!! This is our landing page!</h1>
+    <form method="post">
+        <input type="text" th:name="username">
+        <input type="text" th:name="password">
+        <input type="submit" value="submitButtonText">
+    </form>
 </body>
 </html>
