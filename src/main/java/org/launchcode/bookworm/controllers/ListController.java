@@ -1,0 +1,52 @@
+package org.launchcode.bookworm.controllers;
+
+import org.launchcode.bookworm.Book;
+import org.launchcode.bookworm.BookData;
+import org.launchcode.bookworm.data.BookRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.HashMap;
+
+@Controller
+@RequestMapping(value = "list")
+public class ListController {
+
+    @Autowired
+    BookRepository bookRepository;
+
+    static HashMap<String, String> columnChoices = new HashMap<>();
+
+    public ListController () {
+
+        columnChoices.put("all", "All");
+        columnChoices.put("author", "Author");
+        columnChoices.put("title", "Title");
+
+    }
+
+    @RequestMapping("")
+    public String list(Model model) {
+        model.addAttribute("books",bookRepository.findAll());
+        return "list";
+    }
+
+    @RequestMapping(value = "books")
+    public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
+        Iterable<Book> books;
+        if (column.toLowerCase().equals("all")){
+            books = bookRepository.findAll();
+            model.addAttribute("title", "All Books");
+        } else {
+            books = BookData.findByColumnAndValue(column, value, bookRepository.findAll());
+            model.addAttribute("title", "Books with " + columnChoices.get(column) + ": " + value);
+        }
+        model.addAttribute("books", books);
+
+        return "list-books";
+    }
+
+}
