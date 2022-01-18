@@ -2,19 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Specific Book Titles</title>
+    <title>Results Page</title>
 </head>
 <body>
-<div class="container body-content">
-
-    <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
-
+<div>
     <table>
         <tr th:each="book : ${books}">
             <td>
                 <p>
                     Book Id:
-                    <a th:href="@{'/view/' + ${book.id}}" th:text="${book.id}"></a>
+                    <a th:href="@{'books/view/' + ${book.id}}" th:text="${book.id}"></a>
                 </p>
                 <p>
                     Book Title:
@@ -22,10 +19,12 @@
                 </p>
                 <p>
                     Author:
-                        <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.author}"></a>
+                    <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.author}"></a>
                 </p>
+
             </td>
         </tr>
     </table>
+</div>
 </body>
 </html>

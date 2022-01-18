@@ -37,7 +37,7 @@ public class SearchController {
         model.addAttribute("title", "Books with " + columnChoices.get(searchType) + ": " + searchTerm);
         model.addAttribute("books", books);
 
-        return "search";
+        return "redirect:results";
     }
 
 }

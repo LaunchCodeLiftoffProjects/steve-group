@@ -2,13 +2,38 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to BookWorm!</title>
+    <title>Search Page</title>
 </head>
 <body>
-<h1>Search</h1>
-<form method="post">
-    <input type="text" value="search term">
-    <input type="submit" value="SEARCH">
-</form>
+<!--    <div th:replace="fragments :: page-header"></div>-->
+    <div class="container body-content">
+
+        <h1 th:text="${#strings.capitalizeWords(title)}"></h1>
+
+        <form th:action="@{/results}" method = "post">
+            <h2>Search by:</h2>
+
+            <p>
+            <span th:each="column : ${columns}">
+                <input
+                        type="radio"
+                        name="searchType"
+                        th:id="${column.key}"
+                        th:value="${column.key}"
+                        th:checked="${column.key == 'all'}"/>
+                <label th:for="${column.key}" th:text="${column.value}"></label>
+            </span>
+
+            </p>
+
+            <p>
+                <label for="searchTerm">Keyword:</label>
+                <input type="text" name="searchTerm" id="searchTerm" />
+            </p>
+
+            <input type="submit" value="Search" />
+        </form>
+
+    </div>
 </body>
 </html>

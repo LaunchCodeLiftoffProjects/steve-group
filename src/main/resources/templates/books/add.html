@@ -5,6 +5,20 @@
     <title>Title</title>
 </head>
 <body>
+<form method="post" style="max-width:600px;">
+    <div class="form-group">
+        <label th:for="title">Book Title</label>
+        <input class="form-control" th:field="${book.title}" />
+        <span th:errors="${book.title}" class="error"></span>
+    </div>
 
+    <div class="form-group">
+        <label th:for="author">Author</label>
+        <input class="form-control" th:field="${book.author}" />
+        <span th:errors="${book.author}" class="error"></span>
+    </div>
+
+    <input type="submit" value="Add Book" />
+</form>
 </body>
 </html>

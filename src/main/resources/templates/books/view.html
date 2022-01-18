@@ -2,9 +2,16 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Book Title</title>
 </head>
 <body>
+<h1 th:text="${'Books: ' + book.title}">Default Title</h1>
 
+<nav th:replace="fragments :: page-header"></nav>
+
+<div>
+    <p th:text="${'Book Title: ' + book.title}"></p>
+    <p th:text="${'Author: ' + book.author}"></p>
+</div>
 </body>
 </html>

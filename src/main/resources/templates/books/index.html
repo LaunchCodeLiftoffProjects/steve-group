@@ -5,6 +5,19 @@
     <title>Available Books</title>
 </head>
 <body>
+<div th:replace="fragments :: page-header"></div>
 
+<p th:unless="${books} and ${books.size()}">no books!</p>
+
+<div class="container body-content">
+    <h2>Books</h2>
+    <ul>
+        <li th:each="book : ${books}">
+            <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.title}"></a>
+        </li>
+    </ul>
+    <a th:href="@{'/books/add'}">Add Books</a>
+
+</div>
 </body>
 </html>
