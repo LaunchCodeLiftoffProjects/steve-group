@@ -12,30 +12,26 @@ public class BookData {
      * For example, searching for employer "Enterprise" will include results
      * with "Enterprise Holdings, Inc".
      *
-     * @param column Book field that should be searched.
-     * @param value Value of the field to search for.
+     * @param searchTerm Value of the field to search for.
      * @param allBooks The list of books to search.
      * @return List of all books matching the criteria.
      */
-    public static ArrayList<Book> findByColumnAndValue(String column, String value, Iterable<Book> allBooks) {
+    public static ArrayList<Book> findBySearchTerm(String searchTerm, Iterable<Book> allBooks) {
 
         ArrayList<Book> results = new ArrayList<>();
 
-        if (value.toLowerCase().equals("all")){
+        if (searchTerm.toLowerCase().equals("all")){
             return (ArrayList<Book>) allBooks;
         }
 
-        if (column.equals("all")){
-            results = findByValue(value, allBooks);
-            return results;
-        }
         for (Book book : allBooks) {
 
-            String aValue = getFieldValue(book, column);
-
-            if (aValue != null && aValue.toLowerCase().contains(value.toLowerCase())) {
+            if(book.getTitle().toLowerCase().contains(searchTerm.toLowerCase())){
+                results.add(book);
+            } else if (book.getAuthor().toLowerCase().contains(searchTerm.toLowerCase())){
                 results.add(book);
             }
+
         }
 
         return results;

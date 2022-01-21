@@ -35,16 +35,11 @@ public class ListController {
     }
 
     @RequestMapping(value = "books")
-    public String listJobsByColumnAndValue(Model model, @RequestParam String column, @RequestParam String value) {
+    public String listJobsByColumnAndValue(Model model, @RequestParam String searchTerm) {
         Iterable<Book> books;
-        if (column.toLowerCase().equals("all")){
-            books = bookRepository.findAll();
-            model.addAttribute("title", "All Books");
-        } else {
-            books = BookData.findByColumnAndValue(column, value, bookRepository.findAll());
-            model.addAttribute("title", "Books with " + columnChoices.get(column) + ": " + value);
-        }
-        model.addAttribute("books", books);
+            books = BookData.findBySearchTerm(searchTerm, bookRepository.findAll());
+            model.addAttribute("title", "Books with " + ": " + searchTerm);
+            model.addAttribute("books", books);
 
         return "list-books";
     }
