@@ -12,7 +12,7 @@ import javax.validation.Valid;
 import java.util.Optional;
 
 @Controller
-@RequestMapping("users")
+@RequestMapping("user")
 public class UserController {
 
     @Autowired
@@ -22,13 +22,13 @@ public class UserController {
     public String index(Model model){
         model.addAttribute("title", "All Users");
         model.addAttribute("users", userRepository.findAll());
-        return "users/index";
+        return "user/index";
     }
 
     @GetMapping("add")
     public String displayAddUsersForm(Model model) {
         model.addAttribute(new User());
-        return "users/add";
+        return "user/add";
     }
 
     @PostMapping("add")
@@ -36,7 +36,7 @@ public class UserController {
                                          Errors errors, Model model) {
 
         if (errors.hasErrors()) {
-            return "users/add";
+            return "user/add";
         }
 
         userRepository.save(newUser);
@@ -50,7 +50,7 @@ public class UserController {
         if (optUser.isPresent()) {
             User user = (User) optUser.get();
             model.addAttribute("user", user);
-            return "users/view";
+            return "user/view";
         } else {
             return "redirect:../";
         }

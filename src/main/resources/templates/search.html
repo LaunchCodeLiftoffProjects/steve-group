@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
+<head th:replace="fragments :: head">
     <meta charset="UTF-8">
     <title>Search Page</title>
 </head>
@@ -26,12 +26,14 @@
 
             </p>
 
-            <p>
-                <label for="searchTerm">Keyword:</label>
-                <input type="text" name="searchTerm" id="searchTerm" />
-            </p>
+            <div class = "input-group">
+                <label class = "form-label" for="searchTerm"> Keyword:
+                    <input class = "form-control" type="text" name="searchTerm" id="searchTerm" />
+                </label>
 
-            <input type="submit" value="Search" />
+            </div>
+
+            <input class = "btn btn-primary" type="submit" value="Search" />
         </form>
 
     </div>
