@@ -1,7 +1,7 @@
 package org.launchcode.bookworm.controllers;
 
-import org.launchcode.bookworm.data.BookRepository;
-import org.launchcode.bookworm.data.UserRepository;
+import org.launchcode.bookworm.data.repository.BookRepository;
+import org.launchcode.bookworm.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

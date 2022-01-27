@@ -1,5 +1,8 @@
-package org.launchcode.bookworm;
+package org.launchcode.bookworm.DTO;
 
+
+import org.launchcode.bookworm.data.model.Address;
+import org.launchcode.bookworm.data.model.Book;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.validation.annotation.Validated;
 
@@ -10,14 +13,8 @@ import java.util.ArrayList;
 import java.util.Date;
 
 
-@Entity
-@Validated
-public class User {
-    private static final BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-    @Id
-    @GeneratedValue
-    private int id;
 
+public class UserDTO {
 
     @NotBlank
     private String firstName;
@@ -26,21 +23,12 @@ public class User {
     private Date dob;
     private String userName;
     private String email;
-    private String pwHash;
-    private ArrayList <Book> library;
+    private String password;
+    private String confirmPassword;
 
-    @OneToOne
-    @JoinColumn (name = "addressId")
     private Address address;
 
-public User (){}
-    public User(String userName, String password){
-        this.userName = userName;
-        this.pwHash = encoder.encode(password);
-    }
-    public void setId(int id) {
-        this.id = id;
-    }
+    public UserDTO (){}
 
     public String getFirstName() {
         return firstName;
@@ -82,20 +70,20 @@ public User (){}
         this.email = email;
     }
 
-    public String getPwHash() {
-        return pwHash;
+    public String getPassword() {
+        return password;
     }
 
-    public void setPwHash(String pwHash) {
-        this.pwHash = pwHash;
+    public void setPassword(String password) {
+        this.password = password;
     }
 
-    public ArrayList<Book> getLibrary() {
-        return library;
+    public String getConfirmPassword() {
+        return confirmPassword;
     }
 
-    public void setLibrary(ArrayList<Book> library) {
-        this.library = library;
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public Address getAddress() {
@@ -106,7 +94,6 @@ public User (){}
         this.address = address;
     }
 
-    public boolean isMatchingPassword(String password){
-        return encoder.matches(password,pwHash);
-    }
+
 }
+

@@ -1,4 +1,4 @@
-package org.launchcode.bookworm;
+package org.launchcode.bookworm.data.model;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

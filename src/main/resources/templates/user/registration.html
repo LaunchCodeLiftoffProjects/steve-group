@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<div th:replace="fragments :: page-header"></div>
+<form method="post" th:action="@{/user/registration}" th:object="${user}" enctype="utf8">
+    <div class="container">
+        <div class="row">
+            <!--/* email */-->
+            <div class="mb-3 col">
+                <label for="exampleInputEmail1" class="form-label">Email address</label>
+                <input type="email" th:field="*{email}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+            </div>
+            <!--/* password */-->
+            <div class="mb-3 col">
+                <label for="inputPassword5" class="form-label">Password</label>
+                <input type="password" th:field="*{password}" id="inputPassword5" class="form-control" aria-describedby="passwordHelpBlock">
+                <div id="passwordHelpBlock" class="form-text">
+                    Your password must be 8-20 characters long, contain letters and numbers, and must not contain
+                    spaces,
+                    special characters, or emoji.
+                </div>
+            </div>
+            <div class="mb-3 col">
+                <label for="confirmPassword" class="form-label">Confirm Password</label>
+                <input type="password" th:field="*{confirmPassword}" id="confirmPassword" class="form-control"
+                       aria-describedby="verifyPasswordEntered">
+                <div id="verifyPasswordEntered" class="form-text">
+                </div>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+        <!--/* firstname */-->
+        <div class="mb-3 col">
+            <label for="firstName" class="form-label">First Name</label>
+            <input type="text" th:field="*{firstName}" class="form-control" id="firstName" aria-describedby="firstNameHelp">
+            <div id="firstNameHelp" class="form-text">Enter your first name</div>
+        </div>
+        <!--/* lastname */-->
+        <div class="mb-3 col">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" th:field="*{lastName}" class="form-control" id="lastName" aria-describedby="lastNameHelp">
+            <div id="lastNameHelp" class="form-text">Enter your last name</div>
+        </div>
+        <div class="mb-3 col">
+            <label for="userName" class="form-label">User Name</label>
+            <input type="text" th:field="*{userName}" class="form-control" id="userName" aria-describedby="userNameHelp">
+            <div id="userNameHelp" class="form-text">Enter your User name</div>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Submit</button>
+</form>
+</body>
+</html>

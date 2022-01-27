@@ -1,16 +1,11 @@
 package org.launchcode.bookworm.controllers;
 
-import org.launchcode.bookworm.Book;
-import org.launchcode.bookworm.BookData;
-import org.launchcode.bookworm.data.BookRepository;
+import org.launchcode.bookworm.data.model.Book;
+import org.launchcode.bookworm.data.repository.BookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.Optional;
-
-import static org.launchcode.bookworm.controllers.ListController.columnChoices;
 
 @Controller
 @RequestMapping("search")
@@ -40,11 +35,9 @@ public class SearchController {
 
     @PostMapping("results")
     public String displaySearchResults(Model model, @RequestParam String searchTerm){
-        Iterable<Book> books;
+        Iterable<Book> books = null;
         if (searchTerm.toLowerCase().equals("all") || searchTerm.equals("")){
             books = bookRepository.findAll();
-        } else {
-            books = BookData.findBySearchTerm(searchTerm, bookRepository.findAll());
         }
         model.addAttribute("title", "Books with " + searchTerm + ": " + searchTerm);
         model.addAttribute("books", books);
