@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-<form method="post" style="max-width:600px;">
+<form th:action="@{/books/add}" method="post" style="max-width:600px;">
     <div class="form-group">
         <label th:for="title">Book Title</label>
         <input class="form-control" th:field="${book.title}" />
@@ -19,7 +19,9 @@
     </div>
 
 
-    <input type="submit" value="Add Book" />
+    <button class="btn btn-outline-success" type="submit">Add Book</button>
+
+    <a th:href="@{/user}" class="btn btn-outline-success">Back to Profile!</a>
 </form>
 </body>
 </html>

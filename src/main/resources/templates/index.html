@@ -3,18 +3,27 @@
 <head th:replace="fragments :: head">
 </head>
 <body>
+
     <div th:replace="fragments :: page-header"></div>
-    <h1>Welcome to BookWorm!! This is our landing page!</h1>
-    <form method="post">
-        <label>username
-        <input class="form-control me-2" type="text" placeholder="Username" aria-label="Username" th:name="username">
-        </label>
-        <label>password</label>
-        <input type="password" th:name="password">
-        <input type="submit" value="SUBMIT">
-    </form>
+
+    <h1>Welcome to BookWorm!! </h1>
+    <h2>Brought to you by: Kate D., Iain S., Breon G., and Mark J!</h2>
 
 
-    <a th:href="@{'/users/add'}">New User</a>
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <p class = lead>
+                    This is a mobile and dynamic application that allows the user to lend and borrow books.
+                </p>
+            </div>
+        </div>
+
+    </div>
+
+
+
+
+
 </body>
 </html>

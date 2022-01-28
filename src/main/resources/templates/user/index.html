@@ -6,9 +6,25 @@
 </head>
 <body>
 <div th:replace="fragments :: page-header"></div>
-<h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
-<form th:action="@{/logout}" method="post">
-    <input type="submit" value="Sign Out"/>
-</form>
+<div class="container-fluid">
+    <h1 th:inline="text">Hello [[${#httpServletRequest.remoteUser}]]!</h1>
+</div>
+<div class="container">
+
+    <div class="col">
+        <a href="/books/add" class="btn btn-outline-success">Add a book to the Library</a>
+    </div>
+    <p th:unless="${books} and ${books.size()}">no books!</p>
+
+    <div class ="container body-content">
+        <ul>
+            <li th:each="book : ${books}">
+                <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.title}"></a>
+            </li>
+        </ul>
+    </div>
+
+</div>
+
 </body>
 </html>

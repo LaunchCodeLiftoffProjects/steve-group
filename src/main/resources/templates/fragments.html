@@ -17,9 +17,14 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                <li class="nav-item">
+                <li class="nav-item" th:unless="${#httpServletRequest.remoteUser}">
                     <a class="nav-link active" aria-current="page" th:href="@{'/'}">Home</a>
                 </li>
+
+                <li class="nav-item" th:if="${#httpServletRequest.remoteUser}">
+                    <a class="nav-link active" aria-current="page" th:href="@{'/user'}">Profile</a>
+                </li>
+
                 <li class="nav-item">
                     <a class="nav-link" th:href="@{'/search'}">Search</a>
                 </li>
@@ -34,22 +39,30 @@
                         <li><a class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-                </li>
+
             </ul>
-            <form th:action="@{/user/add}" method = "post" class="d-flex">
+
+            <form th:action="@{/user/login}"  th:unless="${#httpServletRequest.remoteUser}"
+                  method = "post" class="d-flex">
                 <label>Username
-                <input class="form-control me-2" type="text" placeholder="Username" aria-label="Username" th:name="userName">
+                <input class="form-control me-2" type="text" placeholder="Username" aria-label="Username" th:name="username">
                 </label>
                 <label>Password
                     <input class="form-control me-2" type="password" placeholder="Password" aria-label="Password" th:name="password">
                 </label>
+                <div><label>Remember Me! <input type="checkbox" name="remember-me"/> </label></div>
                 <button class="btn btn-outline-success" type="submit">Log In</button>
+            </form>
+
+
+
+            <form th:action="@{/logout}" th:if="${#httpServletRequest.remoteUser}"method="post">
+                <input type="submit" value="Sign Out"/>
             </form>
         </div>
     </div>
 </nav>
+
 
 </body>
 </html>

@@ -83,4 +83,18 @@ public class UserController {
         }
     }
 
+
+    @GetMapping("books/add")
+   public String displayViewBookAdd(Model model, @PathVariable int userId){
+        Optional optUser = userRepository.findById(userId);
+        if (optUser.isPresent()) {
+            User user = (User) optUser.get();
+            model.addAttribute("user", user);
+            return "books/add";
+        }else {
+                return "redirect:../";
+            }
+
+    }
+
 }

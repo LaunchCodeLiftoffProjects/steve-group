@@ -2,7 +2,9 @@ package org.launchcode.bookworm.controllers;
 
 
 import org.launchcode.bookworm.data.model.Book;
+import org.launchcode.bookworm.data.model.User;
 import org.launchcode.bookworm.data.repository.BookRepository;
+import org.launchcode.bookworm.data.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,6 +12,7 @@ import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.security.Principal;
 import java.util.Optional;
 
 @Controller
@@ -18,6 +21,8 @@ public class BookController {
 
     @Autowired
     private BookRepository bookRepository;
+    @Autowired
+    private UserRepository userRepository;
 
     @GetMapping("")
     public String index(Model model){
@@ -34,14 +39,18 @@ public class BookController {
 
     @PostMapping("add")
     public String processAddBookForm(@ModelAttribute @Valid Book newBook,
-                                     Errors errors, Model model) {
+                                     Errors errors, Model model, Principal principal) {
+
 
         if (errors.hasErrors()) {
             return "books/add";
         }
 
+        User user = userRepository.findUserData(principal.getName());
+
+        newBook.setOwner(user);
         bookRepository.save(newBook);
-        return "redirect:";
+        return "books/add";
     }
 
     @GetMapping("view/{bookId}")
