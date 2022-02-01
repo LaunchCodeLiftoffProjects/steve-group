@@ -43,14 +43,14 @@ public class BookController {
 
 
         if (errors.hasErrors()) {
-            return "books/add";
+            return "redirect:add";
         }
 
         User user = userRepository.findUserData(principal.getName());
 
         newBook.setOwner(user);
         bookRepository.save(newBook);
-        return "books/add";
+        return "modal";
     }
 
     @GetMapping("view/{bookId}")

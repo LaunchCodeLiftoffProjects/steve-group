@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org/">
+<head th:replace="fragments :: head">
+</head>
+<body>
+<div th:replace="fragments :: page-header"></div>
+<div class="modal fade" id="modalAddBookSuccess" tabindex="-1" role="dialog" aria-labelledby="modalAddBookSuccess" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modalAddBookSuccessTitle">Success!</h5>
+            </div>
+            <div class="modal-body">
+                Congratulations <strong th:text="${userName}"></strong>, you have successfully added <strong th:text="${title}"></strong> to your library!
+            </div>
+            <div class="modal-footer">
+                <a th:href="@{/books/add}" class="btn btn-success">
+                    <button>Great!</button>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

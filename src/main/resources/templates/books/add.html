@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org/">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<head th:replace="fragments :: head">
 </head>
 <body>
+<div th:replace="fragments :: page-header"></div>
 <form th:action="@{/books/add}" method="post" style="max-width:600px;">
     <div class="form-group">
         <label th:for="title">Book Title</label>
@@ -18,10 +17,25 @@
         <span th:errors="${book.author}" class="error"></span>
     </div>
 
-
-    <button class="btn btn-outline-success" type="submit">Add Book</button>
-
-    <a th:href="@{/user}" class="btn btn-outline-success">Back to Profile!</a>
+    <button class="btn btn-outline-success" type="submit" data-toggle="modal" data-target="modalAddBookSuccess">Add Book</button>
+<!--    <th:block th:replace="modal :: modal('modalAddBookSuccess')">modal</th:block>-->
+    <a th:href="@{/user}" class="btn btn-outline-success">
+        <button>Back to Profile!</button>
+    </a>
 </form>
+
+<!--<script th:src="@{/webjars/jquery/jquery.min.js}"></script>-->
+<!--<script th:src="@{/webjars/popper.js/umd/popper.min.js}"></script>-->
+<!--<script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>-->
+
+<!--<script>-->
+<!--    $('modalAddBookSuccess').on('show.bs.modal', function () {-->
+<!--        $.get("/modals/modalAddBookSuccess", function (data) {-->
+<!--            $('modalAddBookSuccess').find('.modal-body').html(data);-->
+<!--        })-->
+<!--    });-->
+<!--</script>-->
+
+
 </body>
 </html>
