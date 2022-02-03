@@ -50,7 +50,9 @@ public class BookController {
 
         newBook.setOwner(user);
         bookRepository.save(newBook);
-        return "modal";
+        model.addAttribute("success", "The book has been added to your library!");
+        model.addAttribute("book",new Book());
+        return "books/add";
     }
 
     @GetMapping("view/{bookId}")

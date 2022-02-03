@@ -20,6 +20,12 @@ public class SearchController {
         return "search";
     }
 
+//    @RequestMapping("")
+//    public String searchByTerm(Model model) {
+//        model.addAttribute("books", bookRepository.findAll());
+//        return "search";
+//    }
+
 //    @GetMapping("/results")
 //    public String displayViewBook(Model model, @PathVariable int bookId) {
 //

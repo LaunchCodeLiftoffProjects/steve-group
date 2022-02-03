@@ -4,6 +4,7 @@
 </head>
 <body>
 <div th:replace="fragments :: page-header"></div>
+<div th:if="${success}" th:text="${success}" class="alert alert-success" role="alert"></div>
 <form th:action="@{/books/add}" method="post" style="max-width:600px;">
     <div class="form-group">
         <label th:for="title">Book Title</label>
