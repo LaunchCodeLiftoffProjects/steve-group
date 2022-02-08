@@ -17,6 +17,10 @@ public class Book {
     @JoinColumn(name = "owner_id")
     private User owner;
 
+    @ManyToOne
+    @JoinColumn(name = "borrower_id")
+    private User borrower;
+
     public int getId() {
         return id;
     }
@@ -52,6 +56,10 @@ public class Book {
     public void setOwner(User owner) {
         this.owner = owner;
     }
+
+    public User getBorrower() { return borrower; }
+
+    public void setBorrower(User borrower) { this.borrower = borrower; }
 
     public String getDescription() {
         return description;

@@ -6,18 +6,27 @@
 </head>
 <body>
 <div th:replace="fragments :: page-header"></div>
-
-<p th:unless="${books} and ${books.size()}">no books!</p>
-
 <div class="container body-content">
-    <h2>Books</h2>
-    <ul>
-        <li th:each="book : ${books}">
-            <a th:href="@{'/books/view/' + ${book.id}}" th:text="${book.title}"></a>
-        </li>
-    </ul>
-    <a th:href="@{'/books/add'}">Add Books</a>
-
+    <h2>All Books</h2>
+<div>
+    <a th:href="@{'/books/add'}" class="btn btn-primary">Add Books</a>
+</div>
+<p th:unless="${books} and ${books.size()}">no books!</p>
+<div class="container-fluid" th:each="book : ${books}">
+    <div class="row">
+        <div class="col align-self-center">
+            <div class="card mb-2" style="width: 18rem;">
+                <img src="..." class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h3 class="card-title" th:text="${book.title}"></h3>
+                    <h6 class="card-subtitle mb-2 text-muted" th:text="${book.author}"></h6>
+                    <p class="card-text" th:text="${book.description}"></p>
+                    <a th:href="@{'/books/view/' + ${book.id}}" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 </div>
 </body>
 </html>

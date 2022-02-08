@@ -68,4 +68,23 @@ public class BookController {
         }
     }
 
+    @PostMapping("view/{bookId}")
+    public String processBorrowBookForm(@ModelAttribute @Valid Book currentBook,
+                                     Errors errors, Model model, Principal principal) {
+
+
+        if (errors.hasErrors()) {
+            return "redirect:view";
+        }
+
+        User borrower = userRepository.findUserData(principal.getName());
+
+        currentBook.setBorrower(borrower);
+        bookRepository.save(currentBook);
+        model.addAttribute("success", "You've borrowed the book!");
+        model.addAttribute("book",new Book());
+        return "view/{bookId}";
+    }
+
+
 }

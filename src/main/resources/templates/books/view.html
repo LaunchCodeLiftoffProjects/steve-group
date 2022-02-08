@@ -6,10 +6,12 @@
 </head>
 <body>
 <nav th:replace="fragments :: page-header"></nav>
-<h1 th:text="${'Books: ' + book.title}">Default Title</h1>
+<h1 th:text="${book.title}">Default Title</h1>
 <div>
-    <p th:text="${'Book Title: ' + book.title}"></p>
     <p th:text="${'Author: ' + book.author}"></p>
+</div>
+<div>
+    <a th:href="@{'/books/view/' + ${book.id}}" class="btn btn-primary">Borrow Book</a>
 </div>
 </body>
 </html>
